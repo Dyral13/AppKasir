@@ -118,11 +118,19 @@ class _KasirState extends State<Kasir> {
                 ],
               ),
             ),
-
-            // besok kita menambahkan tombol
-            //untuk menambahkan data yang ditampilkan
-            // kedalam daftar pesanan
-            //lalu menambahkan foto hasil produk juga
+            const SizedBox(height: 16),
+            Container(
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  // Handle button press
+                },
+                icon: Icon(Icons.add_shopping_cart),
+                label: Text('Tambah ke Keranjang'),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(double.infinity, 50),
+                ),
+              ),
+            ),
           ],
         ),
       ),
