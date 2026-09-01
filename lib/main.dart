@@ -18,6 +18,28 @@ class _KasirState extends State<Kasir> {
   final TextEditingController _hargaController = TextEditingController();
   final TextEditingController _qtyController = TextEditingController();
   //menambahkan fungsi dari tombol tambah ke keranjang
+  List<DetailPesanan> _barangKeranjang = [];
+
+  void _tambahKeranjang() {
+    if (_qtyController.text.isNotEmpty) {
+      int HargaBarang = int.parse(_hargaController.text);
+      int QtyBarang = int.parse(_qtyController.text);
+      int angkaAkhir = QtyBarang * HargaBarang;
+      String NamaBarang = _namaController.text;
+
+      setState(() {
+        _barangKeranjang.add(
+          DetailPesanan(
+            nama: NamaBarang,
+            harga: HargaBarang,
+            qty: QtyBarang,
+            subtotal: angkaAkhir,
+          ),
+        );
+      });
+    }
+  }
+
   void _cekBarang(String kode) {
     if (DataBarang.daftarHarga.containsKey(kode)) {
       setState(() {
@@ -124,7 +146,9 @@ class _KasirState extends State<Kasir> {
             Container(
               child: ElevatedButton.icon(
                 onPressed: () {
-                  // Handle button press
+                  for (var item in _barangKeranjang) {
+                    print('${item.nama} (${item.qty}) - Rp ${item.subtotal}');
+                  }
                 },
                 icon: Icon(
                   Icons.add_shopping_cart,
@@ -147,3 +171,7 @@ class _KasirState extends State<Kasir> {
     );
   }
 }
+//=================================================================
+//Revisi
+//belum ada tempat penulisan untuk tombolnya
+// logika list dan menambahkan barang sudah pas
