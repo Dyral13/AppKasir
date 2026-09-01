@@ -16,7 +16,8 @@ class _KasirState extends State<Kasir> {
   final TextEditingController _kodeController = TextEditingController();
   final TextEditingController _namaController = TextEditingController();
   final TextEditingController _hargaController = TextEditingController();
-
+  final TextEditingController _qtyController = TextEditingController();
+  //menambahkan fungsi dari tombol tambah ke keranjang
   void _cekBarang(String kode) {
     if (DataBarang.daftarHarga.containsKey(kode)) {
       setState(() {
@@ -77,6 +78,7 @@ class _KasirState extends State<Kasir> {
                 SizedBox(
                   width: 70,
                   child: TextField(
+                    controller: _qtyController,
                     decoration: InputDecoration(
                       labelText: 'qty:',
                       border: OutlineInputBorder(),
@@ -124,13 +126,21 @@ class _KasirState extends State<Kasir> {
                 onPressed: () {
                   // Handle button press
                 },
-                icon: Icon(Icons.add_shopping_cart),
-                label: Text('Tambah ke Keranjang'),
+                icon: Icon(
+                  Icons.add_shopping_cart,
+                  color: Color.fromARGB(255, 33, 97, 35),
+                ),
+                label: Text(
+                  'Tambah ke Keranjang',
+                  style: TextStyle(color: Color.fromARGB(255, 33, 97, 35)),
+                ),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50),
                 ),
               ),
             ),
+            SizedBox(height: 16),
+            Container(),
           ],
         ),
       ),
