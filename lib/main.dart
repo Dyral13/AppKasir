@@ -145,11 +145,7 @@ class _KasirState extends State<Kasir> {
             const SizedBox(height: 16),
             Container(
               child: ElevatedButton.icon(
-                onPressed: () {
-                  for (var item in _barangKeranjang) {
-                    print('${item.nama} (${item.qty}) - Rp ${item.subtotal}');
-                  }
-                },
+                onPressed: _tambahKeranjang,
                 icon: Icon(
                   Icons.add_shopping_cart,
                   color: Color.fromARGB(255, 33, 97, 35),
@@ -164,14 +160,28 @@ class _KasirState extends State<Kasir> {
               ),
             ),
             SizedBox(height: 16),
-            Container(),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _barangKeranjang.length,
+                itemBuilder: (context, index) {
+                  final item = _barangKeranjang[index];
+                  return ListTile(
+                    title: Text(
+                      item.nama,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text('${item.qty} x Rp. ${item.harga}'),
+                    trailing: Text('Rp ${item.subtotal}'),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
+
 //=================================================================
 //Revisi
-//belum ada tempat penulisan untuk tombolnya
-// logika list dan menambahkan barang sudah pas
