@@ -179,6 +179,23 @@ class _KasirState extends State<Kasir> {
           ],
         ),
       ),
+      //=========================================================
+      //Tombol dibawah
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size.fromHeight(50),
+            ),
+            child: const Text(
+              'Bayar',
+              style: TextStyle(color: Color.fromARGB(255, 33, 97, 35)),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
