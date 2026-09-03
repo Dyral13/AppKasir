@@ -40,6 +40,14 @@ class _KasirState extends State<Kasir> {
     }
   }
 
+  int totalHarga() {
+    int total = 0;
+    for (DetailPesanan item in _barangKeranjang) {
+      total = total + item.subtotal;
+    }
+    return total;
+  }
+
   void _cekBarang(String kode) {
     if (DataBarang.daftarHarga.containsKey(kode)) {
       setState(() {
