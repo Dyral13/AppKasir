@@ -85,7 +85,7 @@ class _KasirState extends State<Kasir> {
 
       body: Container(
         padding: EdgeInsets.all(16.0), //membuat jarak dari sisi2 layar
-
+        //Menu untuk menaruh kode barang dan qty
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start, // membuat rata kiri
           children: [
@@ -189,18 +189,44 @@ class _KasirState extends State<Kasir> {
       ),
       //=========================================================
       //Tombol dibawah
+      //Tombol dibawah
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size.fromHeight(50),
-            ),
-            child: const Text(
-              'Bayar',
-              style: TextStyle(color: Color.fromARGB(255, 33, 97, 35)),
-            ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // <-- Membuka daftar isi Column
+              Row(
+                mainAxisAlignment: MainAxisAlignment
+                    .spaceBetween, // Mendorong teks ke ujung kiri dan kanan
+                children: [
+                  const Text(
+                    'Total',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'Rp ${totalHarga()}', // Memanggil kalkulator[cite: 3]
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ), // <-- Error 1: Kelebihan kurung ')' sudah dihapus di sini
+                ],
+              ), // <-- Error 2: Widget Row sudah ditutup dengan benar di sini
+              //==================================================
+              //jarak tombol bayar dengan total harga
+              const SizedBox(height: 16),
+
+              //Tombol bayar
+              ElevatedButton(
+                onPressed: () {}, // Tempat menaruh fungsi bayar nanti[cite: 3]
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(50),
+                ),
+                child: const Text(
+                  'Bayar',
+                  style: TextStyle(color: Color.fromARGB(255, 33, 97, 35)),
+                ),
+              ),
+            ],
           ),
         ),
       ),
